@@ -255,7 +255,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 // Document level settings ----
 
 // Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = ['ggplot2', 'dplyr', 'kableExtra', 'readr'];
+globalThis.qwebrInstallRPackagesList = ['ggplot2', 'dplyr', 'readr', 'kableExtra'];
 
 // Specify possible locations to search for the repository
 globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -277,7 +277,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"warning":"true","editor-font-scale":1,"context":"interactive","out-width":"700px","editor-quick-suggestions":"false","comment":"","output":"true","editor-max-height":"","classes":"","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","autorun":"false","results":"markup","label":"unnamed-chunk-1","fig-width":7,"read-only":"false"},"code":"wafflehouse %>%\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")","id":1},{"options":{"warning":"true","editor-font-scale":1,"context":"interactive","out-width":"700px","editor-quick-suggestions":"false","comment":"","output":"true","editor-max-height":"","classes":"","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","autorun":"false","results":"markup","label":"unnamed-chunk-2","fig-width":7,"read-only":"false"},"code":"","id":2},{"options":{"warning":"true","editor-font-scale":1,"context":"interactive","out-width":"700px","editor-quick-suggestions":"false","comment":"","output":"true","editor-max-height":"","classes":"","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","autorun":"false","results":"markup","label":"unnamed-chunk-3","fig-width":7,"read-only":"false"},"code":"metal %>%\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")","id":3},{"options":{"warning":"true","editor-font-scale":1,"context":"interactive","out-width":"700px","editor-quick-suggestions":"false","comment":"","output":"true","editor-max-height":"","classes":"","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","autorun":"false","results":"markup","label":"unnamed-chunk-4","fig-width":7,"read-only":"false"},"code":"#hint: adapt the code from the previous plot","id":4},{"options":{"warning":"true","editor-font-scale":1,"context":"interactive","out-width":"700px","editor-quick-suggestions":"false","comment":"","output":"true","editor-max-height":"","classes":"","dpi":72,"out-height":"","fig-cap":"","fig-height":5,"message":"true","autorun":"false","results":"markup","label":"unnamed-chunk-5","fig-width":7,"read-only":"false"},"code":"","id":5}];
+globalThis.qwebrCellDetails = [{"code":"wafflehouse <- read_delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv\", delim = \";\")\nwafflehouse <- wafflehouse |>\n  mutate(South = ifelse(South == 1, \"Southern State\", \"Other State\"))\nmetal <- read_delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv\", delim = \";\")","id":1,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-1","editor-font-scale":1,"out-width":"700px"}},{"code":"wafflehouse |>\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")","id":2,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-2","editor-font-scale":1,"out-width":"700px"}},{"code":"","id":3,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-3","editor-font-scale":1,"out-width":"700px"}},{"code":"metal |>\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")","id":4,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-4","editor-font-scale":1,"out-width":"700px"}},{"code":"#hint: adapt the code from the previous plot","id":5,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-5","editor-font-scale":1,"out-width":"700px"}},{"code":"","id":6,"options":{"out-height":"","editor-quick-suggestions":"false","results":"markup","warning":"true","output":"true","fig-cap":"","autorun":"false","editor-max-height":"","context":"interactive","message":"true","dpi":72,"fig-height":5,"comment":"","fig-width":7,"classes":"","read-only":"false","label":"unnamed-chunk-6","editor-font-scale":1,"out-width":"700px"}}];
 
 </script>
 <script type="module">
@@ -1378,6 +1378,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <section id="overview" class="level3">
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
 <p>In this interactive page, we’ll explore a couple of data sets that Richard McElreath uses in his popular textbook, Statistical Rethinking. The <code>wafflehouse</code> data set includes state-by-state information including populations, marriage and divorce rates, counts of Waffle House restaurants, and more. The <code>metal</code> data set includes country level measurements on population, happiness, and number of metal bands originating from the corresponding country. I’ve set up this page to read in the data and draw a couple of pictures – feel free to mess around and make changes.</p>
+<p>The code chunk below reads in both the <code>wafflehouse</code> and <code>metal</code> data sets from Dr.&nbsp;McElreath’s GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk.</p>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Don’t worry about breaking the page or writing code that doesn’t work. These things will happen – you’ll learn about how to use R to analyze data, draw pictures, and more over the course of our semester together. For now, you might stick to changing the variables included in a plot, or changing the plot type – you can <a href="https://ggplot2.tidyverse.org/reference/#geoms">find different available plotting layers here</a>. If you’d like to try something more adventurous…go for it!</p>
 </section>
 <section id="waffle-house-data" class="level2">
@@ -1518,7 +1521,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>Change the plot title and axis labels to more accurately describe your updated plot.</li>
 <li>Once you’ve updated the plot, think about what you are seeing and provide a description.</li>
 </ul>
-<div id="qwebr-insertion-location-1"></div>
+<div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1536,7 +1539,7 @@ Note
 <section id="additional-waffle-house-data-explorations" class="level4">
 <h4 class="anchored" data-anchor-id="additional-waffle-house-data-explorations">Additional Waffle House Data Explorations</h4>
 <p>If you are finding this data set to be interesting, try making some additional explorations here! A great way to start is by copying and pasting the plotting code from the previous code chunk and making small changes to it. Are your results what you expected?</p>
-<div id="qwebr-insertion-location-2"></div>
+<div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
@@ -1615,12 +1618,12 @@ Note
 </div>
 </div>
 </div>
-<p>The plot above isn’t quite “fair” – why not? Adjust the plot so that, rather than plotting pure metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that we updated the Waffle House plot above. You’ll benefit by changing the <code>y</code> value and <code>width</code> on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels as well.</p>
-<div id="qwebr-insertion-location-3"></div>
+<p>The plot above isn’t quite “fair” – why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting pure metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that we updated the Waffle House plot above. You’ll benefit by changing the <code>y</code> value and <code>width</code> on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels as well.</p>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>The <code>Happiness</code> column is an interesting one! I wonder if large countries are happy. The plot below is set up to answer this question.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metal <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metal <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Happiness)) <span class="sc">+</span> </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Happiness and Population"</span>,</span>
@@ -1638,12 +1641,12 @@ Note
 </div>
 </div>
 <p>Now try plotting the <code>Happiness</code> against the number of metal bands per capita in the code cell below. What do you notice?</p>
-<div id="qwebr-insertion-location-4"></div>
+<div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <section id="additional-metal-explorations" class="level4">
 <h4 class="anchored" data-anchor-id="additional-metal-explorations">Additional Metal Explorations</h4>
 <p>If you found the <code>metal</code> data set interesting, feel free to include additional explorations below.</p>
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <hr>
 </section>
