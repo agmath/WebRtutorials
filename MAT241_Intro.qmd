@@ -31,13 +31,15 @@ metal <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/mas
 
 In this interactive page, we'll explore a couple of data sets that Richard McElreath uses in his popular textbook, Statistical Rethinking. The `wafflehouse` data set includes state-by-state information including populations, marriage and divorce rates, counts of Waffle House restaurants, and more. The `metal` data set includes country level measurements on population, happiness, and number of metal bands originating from the corresponding country. I've set up this page to read in the data and draw a couple of pictures -- feel free to mess around and make changes. 
 
-The code chunk below reads in both the `wafflehouse` and `metal` data sets from Dr. McElreath's GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk.
+The code chunk below reads in both the `wafflehouse` and `metal` data sets from Dr. McElreath's GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk. I added the `print()` statement at the bottom of the code chunk to make it easy to tell that you've run the code -- without it, no notification is provided.
 
 ```{webr-r}
-wafflehouse <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv", delim = ";")
+wafflehouse <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv", sep = ";")
 wafflehouse <- wafflehouse |>
   mutate(South = ifelse(South == 1, "Southern State", "Other State"))
-metal <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv", delim = ";")
+metal <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv", sep = ";")
+
+print("I read in the data!")
 ```
 
 Don't worry about breaking the page or writing code that doesn't work. These things will happen -- you'll learn about how to use R to analyze data, draw pictures, and more over the course of our semester together. For now, you might stick to changing the variables included in a plot, or changing the plot type -- you can [find different available plotting layers here](https://ggplot2.tidyverse.org/reference/#geoms). If you'd like to try something more adventurous...go for it!
