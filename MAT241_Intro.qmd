@@ -29,7 +29,21 @@ metal <- read_delim("https://raw.githubusercontent.com/rmcelreath/rethinking/mas
 
 ### Overview
 
-In this interactive page, we'll explore a couple of data sets that Richard McElreath uses in his popular textbook, Statistical Rethinking. The `wafflehouse` data set includes state-by-state information including populations, marriage and divorce rates, counts of Waffle House restaurants, and more. The `metal` data set includes country level measurements on population, happiness, and number of metal bands originating from the corresponding country. I've set up this page to read in the data and draw a couple of pictures -- feel free to mess around and make changes. 
+In this interactive page, we'll explore a couple of data sets that Richard McElreath uses in his popular textbook, Statistical Rethinking. The `wafflehouse` data set includes state-by-state information including populations, marriage and divorce rates, counts of Waffle House restaurants, and more. The `metal` data set includes country level measurements on population, happiness, and number of metal bands originating from the corresponding country. 
+
+:::{.callout-tip}
+## Wait...I've Never Coded Before!
+
+Don't worry if you haven't seen R before or even if you've never written a line of code in your entire life! The point here is to *play* and *explore* -- we'll learn R from the ground-up in our full course together.
+:::
+
+The goals I have for this interactive page are to:
+
+1. show some of what is possible with R
+2. empower you to ask your own interesting questions about the `wafflehouse` or `metal` data sets
+3. give you an opportunity to play with R code, making small changes to investigate questions that are of interest to you
+
+I've set up this page to read in the data and draw a couple of pictures -- feel free to mess around and make changes. If you "break" something or write/change code that results in an error, no worries -- you can always reset the code chunk with the reset button. 
 
 The code chunk below reads in both the `wafflehouse` and `metal` data sets from Dr. McElreath's GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk. I added the `print()` statement at the bottom of the code chunk to make it easy to tell that you've run the code -- without it, no notification is provided.
 
