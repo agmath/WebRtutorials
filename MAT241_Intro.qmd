@@ -34,7 +34,7 @@ In this interactive page, we'll explore a couple of data sets that Richard McElr
 :::{.callout-tip}
 ## Wait...I've Never Coded Before!
 
-Don't worry if you haven't seen R before or even if you've never written a line of code in your entire life! The point here is to *play* and *explore* -- we'll learn R from the ground-up in our full course together.
+Don't worry if you haven't seen R before or even if you've never written a line of code in your entire life. The point here is to *play* and *explore* -- we'll learn R from the ground-up in our full course together.
 :::
 
 The goals I have for this interactive page are to:
