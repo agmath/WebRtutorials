@@ -277,7 +277,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"wafflehouse <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv\", sep = \";\")\nwafflehouse <- wafflehouse |>\n  mutate(South = ifelse(South == 1, \"Southern State\", \"Other State\"))\nmetal <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv\", sep = \";\")\n\nprint(\"I read in the data!\")","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-1","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":1},{"code":"wafflehouse |>\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-2","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":2},{"code":"","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-3","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":3},{"code":"metal |>\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-4","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":4},{"code":"#hint: adapt the code from the previous plot","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-5","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":5},{"code":"","options":{"classes":"","warning":"true","read-only":"false","results":"markup","comment":"","editor-font-scale":1,"fig-cap":"","context":"interactive","label":"unnamed-chunk-6","editor-max-height":"","out-height":"","message":"true","out-width":"700px","output":"true","dpi":72,"fig-width":7,"fig-height":5,"autorun":"false","editor-quick-suggestions":"false"},"id":6}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-1","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":"wafflehouse <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv\", sep = \";\")\n\nwafflehouse <- wafflehouse |>\n  mutate(South = ifelse(South == 1, \"Southern State\", \"Other State\"))\n\nmetal <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv\", sep = \";\")\n\nprint(\"I read in the data!\")"},{"id":2,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-2","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":"wafflehouse |>\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")"},{"id":3,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-3","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":""},{"id":4,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-4","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":"metal |>\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")"},{"id":5,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-5","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":"#hint: adapt the code from the previous plot"},{"id":6,"options":{"autorun":"false","out-width":"700px","read-only":"false","comment":"","fig-width":7,"editor-font-scale":1,"fig-cap":"","context":"interactive","message":"true","editor-max-height":"","dpi":72,"fig-height":5,"warning":"true","output":"true","classes":"","label":"unnamed-chunk-6","out-height":"","results":"markup","editor-quick-suggestions":"false"},"code":""}];
 
 </script>
 <script type="module">
@@ -1397,14 +1397,17 @@ Wait…I’ve Never Coded Before!
 <li>empower you to ask your own interesting questions about the <code>wafflehouse</code> or <code>metal</code> data sets</li>
 <li>give you an opportunity to play with R code, making small changes to investigate questions that are of interest to you</li>
 </ol>
-<p>I’ve set up this page to read in the data and draw a couple of pictures – feel free to mess around and make changes. If you “break” something or write/change code that results in an error, no worries – you can always reset the code chunk with the reset button.</p>
+<p>I’ve set up this page to read in the data and draw a couple of pictures – feel free to mess around and make changes. Don’t worry about “breaking” something or writing/changing code that results in an error – you can always reset the code chunk with the reset button.</p>
+</section>
+<section id="lets-get-started" class="level3">
+<h3 class="anchored" data-anchor-id="lets-get-started">Let’s get started!</h3>
 <p>The code chunk below reads in both the <code>wafflehouse</code> and <code>metal</code> data sets from Dr.&nbsp;McElreath’s GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk. I added the <code>print()</code> statement at the bottom of the code chunk to make it easy to tell that you’ve run the code – without it, no notification is provided.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Don’t worry about breaking the page or writing code that doesn’t work. These things will happen – you’ll learn about how to use R to analyze data, draw pictures, and more over the course of our semester together. For now, you might stick to changing the variables included in a plot, or changing the plot type – you can <a href="https://ggplot2.tidyverse.org/reference/#geoms">find different available plotting layers here</a>. If you’d like to try something more adventurous…go for it!</p>
+<p>As I mentioned, don’t worry about breaking the page or writing code that doesn’t work. These things will happen – you’ll learn about how to use R to analyze data, draw pictures, and more over the course of our full semester together. For now, you might stick to changing the variables included in a plot, changing the plot type, or even just changing some colors – you can <a href="https://ggplot2.tidyverse.org/reference/#geoms">find different available plotting layers here</a>. If you’d like to try something more adventurous…go for it!</p>
 </section>
-<section id="waffle-house-data" class="level2">
-<h2 class="anchored" data-anchor-id="waffle-house-data">Waffle House Data</h2>
+<section id="waffle-house-data" class="level3">
+<h3 class="anchored" data-anchor-id="waffle-house-data">Waffle House Data</h3>
 <p>Let’s take a look at the first few rows of the data set and inspect the variables available below.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1563,8 +1566,8 @@ Note
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
-<section id="metal-and-happiness-data" class="level2">
-<h2 class="anchored" data-anchor-id="metal-and-happiness-data">Metal and Happiness Data</h2>
+<section id="metal-and-happiness-data" class="level3">
+<h3 class="anchored" data-anchor-id="metal-and-happiness-data">Metal and Happiness Data</h3>
 <p>Similar to the Waffle House data set, let’s begin by taking a look at the first few rows of the <code>metal</code> data frame and identifying the variables available to us.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1638,7 +1641,7 @@ Note
 </div>
 </div>
 </div>
-<p>The plot above isn’t quite “fair” – why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting pure metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that we updated the Waffle House plot above. You’ll benefit by changing the <code>y</code> value and <code>width</code> on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels as well.</p>
+<p>The plot above isn’t quite “fair” – why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting raw metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that you updated the Waffle House plot above. You’ll benefit by changing the <code>y</code> value and <code>width</code> on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels to fit this new plot as well.</p>
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>The <code>Happiness</code> column is an interesting one! I wonder if large countries are happy. The plot below is set up to answer this question.</p>
@@ -1671,10 +1674,10 @@ Note
 <hr>
 </section>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this interactive page, we explored a couple of data sets and discovered some interesting findings! It is probably clear that these findings are coincidental, and that there are hidden variables which are driving the phenomena we saw. The field of statistics gives us the tools to determine whether phenomena are coincidental, present only in our observed sample data, or are likely to be descriptive of a population-level insight/effect.</p>
-<p>We’ll start our semester by learning how to describe observed sample data (descriptive statistics), and then move to using our observed sample data to better understand the populations that our samples are representative of (inferential statistics). Along the way, we’ll work with real data sets whenever possible, and we’ll learn about how we can use R to conduct our analyses. Don’t worry if the code from today was all brand new to you and you’re still confused by it – that’s expected and we’ll learn R from scratch during our time together.</p>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>In this interactive page, we explored a couple of data sets and discovered some interesting findings! It is probably clear that these findings are coincidental, and that there are hidden variables which are driving the phenomena we saw. The field of statistics gives us the tools to determine whether phenomena are coincidental, present only in our observed sample data, or are likely to be indicative of a population-level insight/effect.</p>
+<p>We’ll start our semester by learning how to describe observed sample data (descriptive statistics), and then move to using our observed sample data to better understand the populations that our samples are representative of (inferential statistics). Along the way, we’ll work with real data sets whenever possible, and we’ll learn about how we can use R to conduct our analyses. Don’t worry if the code from today was all brand new to you and you’re still confused by it – that’s expected and we’ll learn R “from the ground up” during our time together.</p>
 <p>If you were able to do any of the following within this interactive page, then you are <em>ahead</em> of where I expected.</p>
 <ul>
 <li>Changed an axis label or plot title</li>
@@ -1688,8 +1691,8 @@ Note
 <li>Wrote/changed code that didn’t work or didn’t do what you thought it would</li>
 </ul>
 </section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps…</h2>
+<section id="next-steps" class="level3">
+<h3 class="anchored" data-anchor-id="next-steps">Next Steps…</h3>
 <p>I hope you found this interactive page interesting and that you’ll consider enrolling in <code>MAT241: Modern Statistics with Software</code>. I’ll look forward to seeing you there!</p>
 </section>
 

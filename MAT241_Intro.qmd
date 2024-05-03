@@ -43,22 +43,26 @@ The goals I have for this interactive page are to:
 2. empower you to ask your own interesting questions about the `wafflehouse` or `metal` data sets
 3. give you an opportunity to play with R code, making small changes to investigate questions that are of interest to you
 
-I've set up this page to read in the data and draw a couple of pictures -- feel free to mess around and make changes. If you "break" something or write/change code that results in an error, no worries -- you can always reset the code chunk with the reset button. 
+I've set up this page to read in the data and draw a couple of pictures -- feel free to mess around and make changes. Don't worry about "breaking" something or writing/changing code that results in an error -- you can always reset the code chunk with the reset button. 
+
+### Let's get started!
 
 The code chunk below reads in both the `wafflehouse` and `metal` data sets from Dr. McElreath's GitHub repository. Run it using the green, triangular, play button at the top-left of the code chunk. I added the `print()` statement at the bottom of the code chunk to make it easy to tell that you've run the code -- without it, no notification is provided.
 
 ```{webr-r}
 wafflehouse <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv", sep = ";")
+
 wafflehouse <- wafflehouse |>
   mutate(South = ifelse(South == 1, "Southern State", "Other State"))
+
 metal <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv", sep = ";")
 
 print("I read in the data!")
 ```
 
-Don't worry about breaking the page or writing code that doesn't work. These things will happen -- you'll learn about how to use R to analyze data, draw pictures, and more over the course of our semester together. For now, you might stick to changing the variables included in a plot, or changing the plot type -- you can [find different available plotting layers here](https://ggplot2.tidyverse.org/reference/#geoms). If you'd like to try something more adventurous...go for it!
+As I mentioned, don't worry about breaking the page or writing code that doesn't work. These things will happen -- you'll learn about how to use R to analyze data, draw pictures, and more over the course of our full semester together. For now, you might stick to changing the variables included in a plot, changing the plot type, or even just changing some colors -- you can [find different available plotting layers here](https://ggplot2.tidyverse.org/reference/#geoms). If you'd like to try something more adventurous...go for it!
 
-## Waffle House Data
+### Waffle House Data
 
 Let's take a look at the first few rows of the data set and inspect the variables available below.
 
@@ -113,7 +117,7 @@ If you are finding this data set to be interesting, try making some additional e
 
 ```
 
-## Metal and Happiness Data
+### Metal and Happiness Data
 
 Similar to the Waffle House data set, let's begin by taking a look at the first few rows of the `metal` data frame and identifying the variables available to us.
 
@@ -138,7 +142,7 @@ metal |>
        y = "")
 ```
 
-The plot above isn't quite "fair" -- why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting pure metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that we updated the Waffle House plot above. You'll benefit by changing the `y` value and `width` on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels as well.
+The plot above isn't quite "fair" -- why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting raw metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that you updated the Waffle House plot above. You'll benefit by changing the `y` value and `width` on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels to fit this new plot as well.
 
 ```{webr-r}
 metal |>
@@ -180,11 +184,11 @@ If you found the `metal` data set interesting, feel free to include additional e
 
 ***
 
-## Summary
+### Summary
 
-In this interactive page, we explored a couple of data sets and discovered some interesting findings! It is probably clear that these findings are coincidental, and that there are hidden variables which are driving the phenomena we saw. The field of statistics gives us the tools to determine whether phenomena are coincidental, present only in our observed sample data, or are likely to be descriptive of a population-level insight/effect. 
+In this interactive page, we explored a couple of data sets and discovered some interesting findings! It is probably clear that these findings are coincidental, and that there are hidden variables which are driving the phenomena we saw. The field of statistics gives us the tools to determine whether phenomena are coincidental, present only in our observed sample data, or are likely to be indicative of a population-level insight/effect. 
 
-We'll start our semester by learning how to describe observed sample data (descriptive statistics), and then move to using our observed sample data to better understand the populations that our samples are representative of (inferential statistics). Along the way, we'll work with real data sets whenever possible, and we'll learn about how we can use R to conduct our analyses. Don't worry if the code from today was all brand new to you and you're still confused by it -- that's expected and we'll learn R from scratch during our time together.
+We'll start our semester by learning how to describe observed sample data (descriptive statistics), and then move to using our observed sample data to better understand the populations that our samples are representative of (inferential statistics). Along the way, we'll work with real data sets whenever possible, and we'll learn about how we can use R to conduct our analyses. Don't worry if the code from today was all brand new to you and you're still confused by it -- that's expected and we'll learn R "from the ground up" during our time together.
 
 If you were able to do any of the following within this interactive page, then you are *ahead* of where I expected.
 
@@ -198,6 +202,6 @@ If you experienced any of the following, then you are exactly where you should b
 + Wondered *what if*... or *why*...
 + Wrote/changed code that didn't work or didn't do what you thought it would
 
-## Next Steps...
+### Next Steps...
 
 I hope you found this interactive page interesting and that you'll consider enrolling in `MAT241: Modern Statistics with Software`. I'll look forward to seeing you there!
