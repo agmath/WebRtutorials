@@ -3,6 +3,7 @@ title: "What to Expect When You're Expecting MAT241"
 author: "Adam Gilbert"
 format: html
 theme: flatly
+toc: true
 engine: knitr
 webr:
   channel-type: 'automatic'
