@@ -205,3 +205,9 @@ If you experienced any of the following, then you are exactly where you should b
 ### Next Steps...
 
 I hope you found this interactive page interesting and that you'll consider enrolling in `MAT241: Modern Statistics with Software`. I'll look forward to seeing you there!
+
+***
+
+#### References
+
+[1] R. McElreath, *Statistical Rethinking: A Bayesian Course with Examples in R and Stan*, $2^{nd}$ Edition, Chapman and Hall/CRC (2020)

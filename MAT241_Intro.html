@@ -277,7 +277,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"wafflehouse <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv\", sep = \";\")\n\nwafflehouse <- wafflehouse |>\n  mutate(South = ifelse(South == 1, \"Southern State\", \"Other State\"))\n\nmetal <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv\", sep = \";\")\n\nprint(\"I read in the data!\")","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-1","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":1},{"code":"wafflehouse |>\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-2","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":2},{"code":"","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-3","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":3},{"code":"metal |>\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-4","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":4},{"code":"#hint: adapt the code from the previous plot","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-5","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":5},{"code":"","options":{"message":"true","results":"markup","context":"interactive","comment":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","read-only":"false","label":"unnamed-chunk-6","out-height":"","out-width":"700px","dpi":72,"fig-width":7,"classes":"","fig-cap":"","editor-font-scale":1,"fig-height":5,"output":"true","editor-max-height":""},"id":6}];
+globalThis.qwebrCellDetails = [{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-1","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":1,"code":"wafflehouse <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv\", sep = \";\")\n\nwafflehouse <- wafflehouse |>\n  mutate(South = ifelse(South == 1, \"Southern State\", \"Other State\"))\n\nmetal <- read.delim(\"https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv\", sep = \";\")\n\nprint(\"I read in the data!\")"},{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-2","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":2,"code":"wafflehouse |>\n  ggplot() + \n  geom_point(aes(x = WaffleHouses, y = Divorce)) + \n  geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), \n            alpha = 0.75, hjust = 1.25, vjust = 1.25) + \n  labs(title = \"Divorce Rate and Waffle House Count\",\n       x = \"Waffle House Count\",\n       y = \"Divorce Rate\",\n       color = \"Type of State\")"},{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-3","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":3,"code":""},{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-4","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":4,"code":"metal |>\n  ggplot() +\n  geom_density(aes(x = Bands),\n               fill = \"purple\") + \n  geom_boxplot(aes(x = Bands, y = -0.0005),\n               fill = \"purple\", width = 0.0005) + \n  labs(title = \"Distribution of Metal Bands per Country\",\n       x = \"Number of Metal Bands\",\n       y = \"\")"},{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-5","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":5,"code":"#hint: adapt the code from the previous plot"},{"options":{"out-width":"700px","fig-width":7,"label":"unnamed-chunk-6","classes":"","output":"true","dpi":72,"editor-max-height":"","comment":"","message":"true","fig-cap":"","editor-font-scale":1,"context":"interactive","read-only":"false","results":"markup","warning":"true","autorun":"false","fig-height":5,"editor-quick-suggestions":"false","out-height":""},"id":6,"code":""}];
 
 </script>
 <script type="module">
@@ -1114,6 +1114,35 @@ globalThis.qwebrExecuteCode = async function (
 
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -1694,6 +1723,11 @@ Note
 <section id="next-steps" class="level3">
 <h3 class="anchored" data-anchor-id="next-steps">Next Steps…</h3>
 <p>I hope you found this interactive page interesting and that you’ll consider enrolling in <code>MAT241: Modern Statistics with Software</code>. I’ll look forward to seeing you there!</p>
+<hr>
+<section id="references" class="level4">
+<h4 class="anchored" data-anchor-id="references">References</h4>
+<p>[1] R. McElreath, <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>, <span class="math inline">\(2^{nd}\)</span> Edition, Chapman and Hall/CRC (2020)</p>
+</section>
 </section>
 
 </main>
