@@ -53,7 +53,7 @@ The code chunk below reads in both the `wafflehouse` and `metal` data sets from 
 ```{webr-r}
 wafflehouse <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/WaffleDivorce.csv", sep = ";")
 
-wafflehouse <- wafflehouse |>
+wafflehouse <- wafflehouse %>%
   mutate(South = ifelse(South == 1, "Southern State", "Other State"))
 
 metal <- read.delim("https://raw.githubusercontent.com/rmcelreath/rethinking/master/data/metal_bands.csv", sep = ";")
@@ -68,16 +68,16 @@ As I mentioned, don't worry about breaking the page or writing code that doesn't
 Let's take a look at the first few rows of the data set and inspect the variables available below.
 
 ```{r echo = FALSE}
-wafflehouse |>
-  head() |>
-  kable() |>
+wafflehouse %>%
+  head() %>%
+  kable() %>%
   kable_styling(bootstrap_options = c("hover", "striped"))
 ```
 
 In McElreath's text, he looks at the relationship between divorce rates and number of Waffle Houses per capita. The plot below examines divorce rates and raw Waffle House count. 
 
 ```{r echo = FALSE}
-wafflehouse |>
+wafflehouse %>%
   ggplot() + 
   geom_point(aes(x = WaffleHouses, y = Divorce)) + 
   geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), 
@@ -95,7 +95,7 @@ The code to create the previous plot is pre-populated in the code chunk below. C
 + Once you've updated the plot, think about what you are seeing and provide a description.
 
 ```{webr-r}
-wafflehouse |>
+wafflehouse %>%
   ggplot() + 
   geom_point(aes(x = WaffleHouses, y = Divorce)) + 
   geom_text(aes(x = WaffleHouses, y = Divorce, label = Loc, color = South), 
@@ -123,16 +123,16 @@ If you are finding this data set to be interesting, try making some additional e
 Similar to the Waffle House data set, let's begin by taking a look at the first few rows of the `metal` data frame and identifying the variables available to us.
 
 ```{r echo = FALSE}
-metal |>
-  head() |>
-  kable() |>
+metal %>%
+  head() %>%
+  kable() %>%
   kable_styling(bootstrap_options = c("hover", "striped"))
 ```
 
 I wonder what the distribution of metal bands in a country is like! The plot below looks at the distribution of raw count of metal `Bands` per country. It includes two visualizations -- a density plot and a boxplot.
 
 ```{r echo = FALSE}
-metal |>
+metal %>%
   ggplot() +
   geom_density(aes(x = Bands),
                fill = "purple") + 
@@ -146,7 +146,7 @@ metal |>
 The plot above isn't quite "fair" -- why not? The code chunk below contains the code necessary to produce the plot above. Adjust the plot so that, rather than plotting raw metal band counts, you are plotting metal bands per capita. You can do this similarly to the way that you updated the Waffle House plot above. You'll benefit by changing the `y` value and `width` on the boxplot to something around -1000 and 1000, respectively. Adjust the title and axis labels to fit this new plot as well.
 
 ```{webr-r}
-metal |>
+metal %>%
   ggplot() +
   geom_density(aes(x = Bands),
                fill = "purple") + 
@@ -160,7 +160,7 @@ metal |>
 The `Happiness` column is an interesting one! I wonder if large countries are happy. The plot below is set up to answer this question.
 
 ```{r}
-metal |>
+metal %>%
   ggplot() + 
   geom_point(aes(x = Population, y = Happiness)) + 
   labs(title = "Happiness and Population",
