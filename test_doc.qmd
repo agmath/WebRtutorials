@@ -1,0 +1,49 @@
+---
+title: "Test WebR Document"
+author: "Adam Gilbert"
+format: html
+theme: flatly
+toc: true
+engine: knitr
+webr:
+  channel-type: 'automatic'
+  packages: ["ggplot2", "dplyr"]
+  
+filters:
+  - webr
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(kable_styling_bootstrap_options = c("hover", "striped"))
+
+library(tidyverse)
+```
+
+### Interactive Code Block
+
+Below is a sample interactive code block with some initial code provided.
+
+```{webr-r}
+mpg %>%
+  ggplot() + 
+  geom_boxplot(aes(x = class, y = cty, fill = class)) + 
+  labs(
+    title = "City Gas Mileage by Vehicle Class",
+    x = "",
+    y = "City Gas Mileage (mpg)"
+  ) + 
+  coord_flip() + 
+  theme_bw() + 
+  theme(legend.position = "None")
+```
+
+Here's another code chunk, but it is empty to start.
+
+```{webr-r}
+
+
+
+```
+
+That's all there is to building a `WebR` document.
