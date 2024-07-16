@@ -8,7 +8,7 @@
 
 <meta name="author" content="Adam Gilbert">
 
-<title>A Bayesian Approach to Confidence Intervals and the Impact of Prior</title>
+<title>A Bayesian Approach to Confidence Intervals: Impacts of the Prior and Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -360,7 +360,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"out-height":"","autorun":"false","editor-font-scale":"1","fig-cap":"","message":"true","editor-max-height":"","label":"unnamed-chunk-1","out-width":"700px","editor-word-wrap":"true","context":"interactive","fig-width":7,"output":"true","comment":"","classes":"","warning":"true","results":"markup","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","read-only":"false"},"code":"#Update alpha and beta here\n##number of prior observed successes\nalpha <- 1\n##number of prior observed failures\nbeta <- 1\n\n#Fewer points results in more jagged pictures\ngrid_pts <- 500\n\nmy_dists <- tibble(\n  pi = seq(0, 1, length.out = grid_pts),\n  prior_prob = dbeta(pi, alpha, beta)\n)\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  labs(\n    title = \"Prior Distribution\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"},{"id":2,"options":{"out-height":"","autorun":"false","editor-font-scale":"1","fig-cap":"","message":"true","editor-max-height":"","label":"unnamed-chunk-2","out-width":"700px","editor-word-wrap":"true","context":"interactive","fig-width":7,"output":"true","comment":"","classes":"","warning":"true","results":"markup","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","read-only":"false"},"code":"num_frogs <- 12\nset.seed(071524)\nmy_data <- tibble(\n  frog_number = 1:num_frogs,\n  status = sample(c(\"positive\", \"negative\"), \n                  size = num_frogs,\n                  prob = c(0.7, 0.3), \n                  replace = TRUE)\n)\n\nnum_pos <- my_data %>%\n  filter(status == \"positive\") %>%\n  nrow()\n\nprint(paste0(\"Of the \", num_frogs, \n             \" frogs observed, the number positive for Chytrid fungus was \", \n             num_pos, \".\"))"},{"id":3,"options":{"out-height":"","autorun":"false","editor-font-scale":"1","fig-cap":"","message":"true","editor-max-height":"","label":"unnamed-chunk-3","out-width":"700px","editor-word-wrap":"true","context":"interactive","fig-width":7,"output":"true","comment":"","classes":"","warning":"true","results":"markup","dpi":72,"fig-height":5,"editor-quick-suggestions":"false","read-only":"false"},"code":"my_dists <- my_dists %>%\n  mutate(\n    post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob,\n    post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts)\n    )\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  geom_area(aes(x = pi, y = post_prob_normalized), \n            fill = \"orange\", alpha = 0.7) + \n  geom_line(aes(x = pi, y = post_prob_normalized),\n            linetype = \"dashed\") +\n  labs(\n    title = \"Prior and Posterior Distributions\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"read-only":"false","results":"markup","editor-max-height":"","classes":"","autorun":"false","fig-cap":"","editor-word-wrap":"true","comment":"","fig-width":7,"context":"interactive","out-width":"700px","output":"true","dpi":72,"editor-quick-suggestions":"false","fig-height":5,"out-height":"","message":"true","label":"unnamed-chunk-1","warning":"true","editor-font-scale":"1"},"code":"#Update alpha and beta here\n##number of prior observed successes\nalpha <- 1\n##number of prior observed failures\nbeta <- 1\n\n#Fewer points results in more jagged pictures\ngrid_pts <- 500\n\nmy_dists <- tibble(\n  pi = seq(0, 1, length.out = grid_pts),\n  prior_prob = dbeta(pi, alpha, beta)\n)\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  labs(\n    title = \"Prior Distribution\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"},{"id":2,"options":{"read-only":"false","results":"markup","editor-max-height":"","classes":"","autorun":"false","fig-cap":"","editor-word-wrap":"true","comment":"","fig-width":7,"context":"interactive","out-width":"700px","output":"true","dpi":72,"editor-quick-suggestions":"false","fig-height":5,"out-height":"","message":"true","label":"unnamed-chunk-2","warning":"true","editor-font-scale":"1"},"code":"num_frogs <- 12\nset.seed(071524)\nmy_data <- tibble(\n  frog_number = 1:num_frogs,\n  status = sample(c(\"positive\", \"negative\"), \n                  size = num_frogs,\n                  prob = c(0.7, 0.3), \n                  replace = TRUE)\n)\n\nnum_pos <- my_data %>%\n  filter(status == \"positive\") %>%\n  nrow()\n\nprint(paste0(\"Of the \", num_frogs, \n             \" frogs observed, the number positive for Chytrid fungus was \", \n             num_pos, \".\"))"},{"id":3,"options":{"read-only":"false","results":"markup","editor-max-height":"","classes":"","autorun":"false","fig-cap":"","editor-word-wrap":"true","comment":"","fig-width":7,"context":"interactive","out-width":"700px","output":"true","dpi":72,"editor-quick-suggestions":"false","fig-height":5,"out-height":"","message":"true","label":"unnamed-chunk-3","warning":"true","editor-font-scale":"1"},"code":"my_dists <- my_dists %>%\n  mutate(\n    post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob,\n    post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts)\n    )\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  geom_area(aes(x = pi, y = post_prob_normalized), \n            fill = \"orange\", alpha = 0.7) + \n  geom_line(aes(x = pi, y = post_prob_normalized),\n            linetype = \"dashed\") +\n  labs(\n    title = \"Prior and Posterior Distributions\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"},{"id":4,"options":{"read-only":"false","results":"markup","editor-max-height":"","classes":"","autorun":"false","fig-cap":"","editor-word-wrap":"true","comment":"","fig-width":7,"context":"interactive","out-width":"700px","output":"true","dpi":72,"editor-quick-suggestions":"false","fig-height":5,"out-height":"","message":"true","label":"unnamed-chunk-4","warning":"true","editor-font-scale":"1"},"code":"bounds <- my_dists %>%\n  mutate(post_percentile = cumsum(post_prob_normalized*(1/grid_pts))) %>%\n  mutate(from_lower = abs(post_percentile - 0.025),\n         from_upper = abs(post_percentile - 0.975)) %>%\n  filter((from_lower == min(from_lower)) | (from_upper == min(from_upper)))\n\nbounds"}];
 
 </script>
 <script type="module">
@@ -1598,7 +1598,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#biology-context-chytrid-fungus-in-frogs" id="toc-biology-context-chytrid-fungus-in-frogs" class="nav-link active" data-scroll-target="#biology-context-chytrid-fungus-in-frogs">Biology Context: Chytrid Fungus in Frogs</a></li>
+  <li><a href="#about-this-notebook" id="toc-about-this-notebook" class="nav-link active" data-scroll-target="#about-this-notebook">About this Notebook</a>
+  <ul class="collapse">
   <li><a href="#background-information" id="toc-background-information" class="nav-link" data-scroll-target="#background-information">Background Information</a>
   <ul class="collapse">
   <li><a href="#about-chytrid" id="toc-about-chytrid" class="nav-link" data-scroll-target="#about-chytrid">About Chytrid</a></li>
@@ -1608,13 +1609,14 @@ window.Quarto = {
   <li><a href="#observed-data" id="toc-observed-data" class="nav-link" data-scroll-target="#observed-data">Observed Data</a></li>
   <li><a href="#update-to-posterior" id="toc-update-to-posterior" class="nav-link" data-scroll-target="#update-to-posterior">Update to Posterior</a>
   <ul class="collapse">
-  <li><a href="#plausible-interval-for-pi" id="toc-plausible-interval-for-pi" class="nav-link" data-scroll-target="#plausible-interval-for-pi">Plausible Interval for <span class="math inline">\(\pi\)</span></a></li>
+  <li><a href="#credible-interval-for-pi" id="toc-credible-interval-for-pi" class="nav-link" data-scroll-target="#credible-interval-for-pi">Credible interval for <span class="math inline">\(\pi\)</span></a></li>
   </ul></li>
   <li><a href="#investigating-further" id="toc-investigating-further" class="nav-link" data-scroll-target="#investigating-further">Investigating Further</a>
   <ul class="collapse">
   <li><a href="#the-effect-of-the-chosen-prior" id="toc-the-effect-of-the-chosen-prior" class="nav-link" data-scroll-target="#the-effect-of-the-chosen-prior">The Effect of the Chosen Prior</a></li>
   <li><a href="#the-effect-of-the-data" id="toc-the-effect-of-the-data" class="nav-link" data-scroll-target="#the-effect-of-the-data">The Effect of the Data</a></li>
   <li><a href="#sandbox-different-priors-and-different-data" id="toc-sandbox-different-priors-and-different-data" class="nav-link" data-scroll-target="#sandbox-different-priors-and-different-data">Sandbox: Different Priors and Different Data</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -1907,7 +1909,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A Bayesian Approach to Confidence Intervals and the Impact of Prior</h1>
+<h1 class="title">A Bayesian Approach to Confidence Intervals: Impacts of the Prior and Data</h1>
 </div>
 
 
@@ -1930,8 +1932,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="biology-context-chytrid-fungus-in-frogs" class="level2">
-<h2 class="anchored" data-anchor-id="biology-context-chytrid-fungus-in-frogs">Biology Context: Chytrid Fungus in Frogs</h2>
+<!-- ## Biology Context: Chytrid Fungus in Frogs -->
+<section id="about-this-notebook" class="level1">
+<h1>About this Notebook</h1>
 <p><strong>Note:</strong> Could replace “Lab Days” with Bayes Days for students who are secure in their grasp of content.</p>
 <p><strong>Goals:</strong> The goals of this activity are as follows:</p>
 <ul>
@@ -1947,7 +1950,6 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>A sample analysis is conducted with a very uninformative prior.</li>
 <li>Students then update the analysis to use a more appropriate prior which is supported by current research.</li>
 </ul>
-</section>
 <section id="background-information" class="level2">
 <h2 class="anchored" data-anchor-id="background-information">Background Information</h2>
 <p>Some background connecting what we are doing here to what we’ve done so far…</p>
@@ -2086,9 +2088,9 @@ Shape of Prior
 </div>
 </div>
 <p>Notice that, after seeing the data, our <em>posterior</em> estimate for the proportion of frogs impacted by Chytrid has been updated. It looks very unlikely that <span class="math inline">\(\pi\)</span> is less than 0.25 (those population proportions seem incompatible with our observed data), and the most likely proportions are between 0.5 and 0.8.</p>
-<section id="plausible-interval-for-pi" class="level3">
-<h3 class="anchored" data-anchor-id="plausible-interval-for-pi">Plausible Interval for <span class="math inline">\(\pi\)</span></h3>
-<p>Using the Bayesian approach here, we can compute an interval of plausible values for <span class="math inline">\(\pi\)</span>. We call this a <em>plausible interval</em> rather than a <em>confidence interval</em>. Let’s calculate a 95% plausible interval for <span class="math inline">\(\pi\)</span> by approximating the boundary values for the 2.5th percentile and the 97.5th percentile in the posterior distribution.</p>
+<section id="credible-interval-for-pi" class="level3">
+<h3 class="anchored" data-anchor-id="credible-interval-for-pi">Credible interval for <span class="math inline">\(\pi\)</span></h3>
+<p>Using the Bayesian approach here, we can compute an interval of plausible values for <span class="math inline">\(\pi\)</span>. We call this a <em>credible interval</em> rather than a <em>confidence interval</em>. Let’s calculate a 95% credible interval for <span class="math inline">\(\pi\)</span> by approximating the boundary values for the 2.5th percentile and the 97.5th percentile in the posterior distribution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> my_dists <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_percentile =</span> <span class="fu">cumsum</span>(post_prob_normalized<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>grid_pts))) <span class="sc">%&gt;%</span></span>
@@ -2137,7 +2139,7 @@ Shape of Prior
 
 </div>
 </div>
-<p>We can see that the estimated lower bound of our 95% plausible interval for <span class="math inline">\(\pi\)</span> is 0.3847695 and the upper bound is 0.8597194</p>
+<p>We can see that the estimated lower bound of our 95% credible interval for <span class="math inline">\(\pi\)</span> is 0.3847695 and the upper bound is 0.8597194</p>
 </section>
 </section>
 <section id="investigating-further" class="level2">
@@ -2171,6 +2173,10 @@ From Dr.&nbsp;Duryea
 <p>Now run the code chunk below to use the observed data to calculate and plot the updated posterior.</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Run the code block below to compute the <em>credible interval</em>.</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Recall that our original credible interval for <span class="math inline">\(\pi\)</span>, with the uninformative prior, were 0.3847695 and 0.8597194, respectively. The new bounds differ because of the prior we chose.</p>
 </section>
 <section id="the-effect-of-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="the-effect-of-the-data">The Effect of the Data</h3>
@@ -2179,6 +2185,7 @@ From Dr.&nbsp;Duryea
 <section id="sandbox-different-priors-and-different-data" class="level3">
 <h3 class="anchored" data-anchor-id="sandbox-different-priors-and-different-data">Sandbox: Different Priors and Different Data</h3>
 <p>Now that you’ve seen how different priors and different data (separately) result in different inferences.</p>
+</section>
 </section>
 </section>
 

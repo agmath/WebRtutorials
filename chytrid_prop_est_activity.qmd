@@ -1,5 +1,5 @@
 ---
-title: "A Bayesian Approach to Confidence Intervals and the Impact of Prior"
+title: "A Bayesian Approach to Confidence Intervals: Impacts of the Prior and Data"
 author: "Adam Gilbert"
 format: html
 theme: flatly
@@ -21,7 +21,9 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-## Biology Context: Chytrid Fungus in Frogs
+<!-- ## Biology Context: Chytrid Fungus in Frogs -->
+
+# About this Notebook
 
 **Note:** Could replace "Lab Days" with Bayes Days for students who are secure in their grasp of content.
 
@@ -161,9 +163,9 @@ my_dists %>%
 
 Notice that, after seeing the data, our *posterior* estimate for the proportion of frogs impacted by Chytrid has been updated. It looks very unlikely that $\pi$ is less than 0.25 (those population proportions seem incompatible with our observed data), and the most likely proportions are between 0.5 and 0.8.
 
-### Plausible Interval for $\pi$
+### Credible interval for $\pi$
 
-Using the Bayesian approach here, we can compute an interval of plausible values for $\pi$. We call this a *plausible interval* rather than a *confidence interval*. Let's calculate a 95\% plausible interval for $\pi$ by approximating the boundary values for the 2.5th percentile and the 97.5th percentile in the posterior distribution.
+Using the Bayesian approach here, we can compute an interval of plausible values for $\pi$. We call this a *credible interval* rather than a *confidence interval*. Let's calculate a 95\% credible interval for $\pi$ by approximating the boundary values for the 2.5th percentile and the 97.5th percentile in the posterior distribution.
 
 ```{r}
 bounds <- my_dists %>%
@@ -177,7 +179,7 @@ bounds %>%
   kable_styling(bootstrap_options = c("hover", "striped"))
 ```
 
-We can see that the estimated lower bound of our 95% plausible interval for $\pi$ is `r bounds %>%
+We can see that the estimated lower bound of our 95% credible interval for $\pi$ is `r bounds %>%
 slice(1) %>% pull(pi)` and the upper bound is `r bounds %>% slice(n()) %>% pull(pi)`
 
 ## Investigating Further
@@ -275,6 +277,21 @@ my_dists %>%
   ) + 
   theme_bw()
 ```
+
+Run the code block below to compute the *credible interval*.
+
+```{webr-r}
+bounds <- my_dists %>%
+  mutate(post_percentile = cumsum(post_prob_normalized*(1/grid_pts))) %>%
+  mutate(from_lower = abs(post_percentile - 0.025),
+         from_upper = abs(post_percentile - 0.975)) %>%
+  filter((from_lower == min(from_lower)) | (from_upper == min(from_upper)))
+
+bounds
+```
+
+Recall that our original credible interval for $\pi$, with the uninformative prior, were `r bounds %>%
+slice(1) %>% pull(pi)` and `r bounds %>% slice(n()) %>% pull(pi)`, respectively. The new bounds differ because of the prior we chose.
 
 ### The Effect of the Data
 
