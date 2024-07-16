@@ -360,7 +360,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-cap":"","fig-width":7,"editor-font-scale":"1","autorun":"false","read-only":"false","out-width":"700px","warning":"true","label":"unnamed-chunk-1","editor-word-wrap":"true","context":"interactive","message":"true","dpi":72,"results":"markup","editor-quick-suggestions":"false","output":"true","editor-max-height":"","fig-height":5,"out-height":"","comment":"","classes":""},"code":"#Update alpha and beta here\nalpha <- 1\nbeta <- 1\n\nmy_dists <- tibble(\n  pi = seq(0, 1, length.out = 500),\n  prob = dbeta(pi, alpha, beta)\n)\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prob),\n            linetype = \"dashed\") + \n  labs(\n    title = \"Prior Distribution\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"},{"id":2,"options":{"fig-cap":"","fig-width":7,"editor-font-scale":"1","autorun":"false","read-only":"false","out-width":"700px","warning":"true","label":"unnamed-chunk-2","editor-word-wrap":"true","context":"interactive","message":"true","dpi":72,"results":"markup","editor-quick-suggestions":"false","output":"true","editor-max-height":"","fig-height":5,"out-height":"","comment":"","classes":""},"code":"num_frogs <- 12\nset.seed(071524)\nmy_data <- tibble(\n  frog_number = 1:num_frogs,\n  status = sample(c(\"positive\", \"negative\"), \n                  size = num_frogs,\n                  prob = c(0.7, 0.3), \n                  replace = TRUE)\n)\n\nnum_pos <- my_data %>%\n  filter(status == \"positive\") %>%\n  nrow()"},{"id":3,"options":{"fig-cap":"","fig-width":7,"editor-font-scale":"1","autorun":"false","read-only":"false","out-width":"700px","warning":"true","label":"unnamed-chunk-3","editor-word-wrap":"true","context":"interactive","message":"true","dpi":72,"results":"markup","editor-quick-suggestions":"false","output":"true","editor-max-height":"","fig-height":5,"out-height":"","comment":"","classes":""},"code":"my_dists <- my_dists %>%\n  mutate(post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)) %>%\n  mutate(post_prob_normalized = post_prob/(sum(post_prob)*1/500))\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prob),\n            linetype = \"dashed\") + \n  geom_area(aes(x = pi, y = post_prob_normalized), \n            fill = \"orange\", alpha = 0.7) + \n  geom_line(aes(x = pi, y = post_prob_normalized),\n            linetype = \"dashed\") +\n  labs(\n    title = \"Prior and Posterior Distributions\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"}];
+globalThis.qwebrCellDetails = [{"options":{"warning":"true","fig-cap":"","read-only":"false","results":"markup","fig-height":5,"editor-word-wrap":"true","autorun":"false","label":"unnamed-chunk-1","classes":"","message":"true","editor-quick-suggestions":"false","comment":"","dpi":72,"fig-width":7,"out-width":"700px","context":"interactive","editor-max-height":"","output":"true","editor-font-scale":"1","out-height":""},"id":1,"code":"#Update alpha and beta here\n##number of prior observed successes\nalpha <- 1\n##number of prior observed failures\nbeta <- 1\n\n#Fewer points results in more jagged pictures\ngrid_pts <- 500\n\nmy_dists <- tibble(\n  pi = seq(0, 1, length.out = grid_pts),\n  prior_prob = dbeta(pi, alpha, beta)\n)\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  labs(\n    title = \"Prior Distribution\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"},{"options":{"warning":"true","fig-cap":"","read-only":"false","results":"markup","fig-height":5,"editor-word-wrap":"true","autorun":"false","label":"unnamed-chunk-2","classes":"","message":"true","editor-quick-suggestions":"false","comment":"","dpi":72,"fig-width":7,"out-width":"700px","context":"interactive","editor-max-height":"","output":"true","editor-font-scale":"1","out-height":""},"id":2,"code":"num_frogs <- 12\nset.seed(071524)\nmy_data <- tibble(\n  frog_number = 1:num_frogs,\n  status = sample(c(\"positive\", \"negative\"), \n                  size = num_frogs,\n                  prob = c(0.7, 0.3), \n                  replace = TRUE)\n)\n\nnum_pos <- my_data %>%\n  filter(status == \"positive\") %>%\n  nrow()\n\nprint(paste0(\"Of the \", num_frogs, \" frogs observed, the number positive for Chytrid fungus was\", num_pos, \".\"))"},{"options":{"warning":"true","fig-cap":"","read-only":"false","results":"markup","fig-height":5,"editor-word-wrap":"true","autorun":"false","label":"unnamed-chunk-3","classes":"","message":"true","editor-quick-suggestions":"false","comment":"","dpi":72,"fig-width":7,"out-width":"700px","context":"interactive","editor-max-height":"","output":"true","editor-font-scale":"1","out-height":""},"id":3,"code":"my_dists <- my_dists %>%\n  mutate(post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob) %>%\n  mutate(post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts))\n\nmy_dists %>%\n  ggplot() + \n  geom_area(aes(x = pi, y = prior_prob), \n            fill = \"purple\", alpha = 0.4) + \n  geom_line(aes(x = pi, y = prior_prob),\n            linetype = \"dashed\") + \n  geom_area(aes(x = pi, y = post_prob_normalized), \n            fill = \"orange\", alpha = 0.7) + \n  geom_line(aes(x = pi, y = post_prob_normalized),\n            linetype = \"dashed\") +\n  labs(\n    title = \"Prior and Posterior Distributions\",\n    x = \"π\",\n    y = \"\"\n  ) + \n  theme_bw()"}];
 
 </script>
 <script type="module">
@@ -1950,14 +1950,30 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="background-information" class="level2">
 <h2 class="anchored" data-anchor-id="background-information">Background Information</h2>
-<p>The following is a mocked up placeholder…</p>
+<p>Some background connecting what we are doing here to what we’ve done so far…</p>
+<ul>
+<li><p>In our course, we focus on the <em>frequentist</em> approach to statistics and inference.</p>
+<ul>
+<li>In the <em>frequentist</em> approach, the observed data completely determines the inferences we make.</li>
+</ul></li>
+<li><p>There are other approaches to statistics and inference – one of which is <em>Bayesian</em>.</p>
+<ul>
+<li>In <em>Bayesian inference</em>, we approach our tasks with some prior belief about the value of our population parameter.</li>
+<li>We use that prior belief, in conjunction with our data, to produce an updated version of our beliefs.</li>
+</ul></li>
+</ul>
+<p>In this interactive notebook, you’ll see the Bayesian approach to inference on a population proportion in action. You’ll explore how your prior belief (controlled via your choice of <em>prior distribution</em>) and the strength of your observed data work together to produce updated beliefs.</p>
 <section id="about-chytrid" class="level3">
 <h3 class="anchored" data-anchor-id="about-chytrid">About Chytrid</h3>
-<p>Chytrid fungus is an infectious fungal disease that can be fatal to amphibians and has caused some species to become extinct. Talk to Katie about this intro paragraph…</p>
+<p>Chytrid fungus is an infectious fungal disease that can be fatal to amphibians and has caused some species to become extinct. Check out this video from Chris Egnoto to learn more about this threat to amphibian life.</p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZFb5wLOVr9A?si=njkcs8w7jH_V3jri" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</center>
 </section>
 <section id="purpose" class="level3">
 <h3 class="anchored" data-anchor-id="purpose">Purpose</h3>
-<p>Let’s try to estimate the proportion of frogs in Southern New Hampshire which are impacted by chytrid fungus.</p>
+<p>Let’s try to estimate the proportion of frogs in southern New Hampshire which are impacted by chytrid fungus.</p>
 </section>
 <section id="prior-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="prior-assumptions">Prior Assumptions</h3>
@@ -1965,25 +1981,27 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>my_dists <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pi =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">500</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fu">dbeta</span>(pi, alpha, beta)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>my_dists <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prob), </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prob),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Prior Distribution"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"π"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Fewer points results in more jagged pictures</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>grid_pts <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>my_dists <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pi =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> grid_pts),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior_prob =</span> <span class="fu">dbeta</span>(pi, alpha, beta)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>my_dists <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prior_prob), </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prior_prob),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Prior Distribution"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"π"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2024,33 +2042,38 @@ Shape of Prior
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>num_pos <span class="ot">&lt;-</span> my_data <span class="sc">%&gt;%</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">"positive"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"Of the "</span>, num_frogs, <span class="st">" frogs observed, the number positive for Chytrid fungus was"</span>, num_pos, <span class="st">"."</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Of the 12 frogs observed, the number positive for Chytrid fungus was8."</code></pre>
+</div>
 </div>
 </section>
 <section id="update-to-posterior" class="level2">
 <h2 class="anchored" data-anchor-id="update-to-posterior">Update to Posterior</h2>
 <p>Now we’ll use our data to update the prior distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_dists <span class="ot">&lt;-</span> my_dists <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_prob =</span> <span class="fu">choose</span>(num_frogs, num_pos)<span class="sc">*</span>pi<span class="sc">^</span>num_pos<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> pi)<span class="sc">^</span>(num_frogs <span class="sc">-</span> num_pos)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_prob_normalized =</span> post_prob<span class="sc">/</span>(<span class="fu">sum</span>(post_prob)<span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">500</span>))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>my_dists <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prob), </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prob),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> post_prob_normalized), </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> post_prob_normalized),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Prior and Posterior Distributions"</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"π"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_dists <span class="ot">&lt;-</span> my_dists <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_prob =</span> <span class="fu">choose</span>(num_frogs, num_pos)<span class="sc">*</span>pi<span class="sc">^</span>num_pos<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> pi)<span class="sc">^</span>(num_frogs <span class="sc">-</span> num_pos)<span class="sc">*</span>prior_prob) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_prob_normalized =</span> post_prob<span class="sc">/</span>(<span class="fu">sum</span>(post_prob)<span class="sc">*</span><span class="dv">1</span><span class="sc">/</span>grid_pts))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>my_dists <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prior_prob), </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> prior_prob),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> post_prob_normalized), </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> pi, <span class="at">y =</span> post_prob_normalized),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Prior and Posterior Distributions"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"π"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2064,21 +2087,21 @@ Shape of Prior
 <h3 class="anchored" data-anchor-id="plausible-interval-for-pi">Plausible Interval for <span class="math inline">\(\pi\)</span></h3>
 <p>Using the Bayesian approach here, we can compute an interval of plausible values for <span class="math inline">\(\pi\)</span>. We call this a <em>plausible interval</em> rather than a <em>confidence interval</em>. Let’s calculate a 95% plausible interval for <span class="math inline">\(\pi\)</span> by approximating the boundary values for the 2.5th percentile and the 97.5th percentile in the posterior distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> my_dists <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_percentile =</span> <span class="fu">cumsum</span>(post_prob_normalized<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">500</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">from_lower =</span> <span class="fu">abs</span>(post_percentile <span class="sc">-</span> <span class="fl">0.025</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">from_upper =</span> <span class="fu">abs</span>(post_percentile <span class="sc">-</span> <span class="fl">0.975</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((from_lower <span class="sc">==</span> <span class="fu">min</span>(from_lower)) <span class="sc">|</span> (from_upper <span class="sc">==</span> <span class="fu">min</span>(from_upper)))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>bounds <span class="sc">%&gt;%</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"hover"</span>, <span class="st">"striped"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bounds <span class="ot">&lt;-</span> my_dists <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">post_percentile =</span> <span class="fu">cumsum</span>(post_prob_normalized<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>grid_pts))) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">from_lower =</span> <span class="fu">abs</span>(post_percentile <span class="sc">-</span> <span class="fl">0.025</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">from_upper =</span> <span class="fu">abs</span>(post_percentile <span class="sc">-</span> <span class="fl">0.975</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((from_lower <span class="sc">==</span> <span class="fu">min</span>(from_lower)) <span class="sc">|</span> (from_upper <span class="sc">==</span> <span class="fu">min</span>(from_upper)))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>bounds <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"hover"</span>, <span class="st">"striped"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-hover table-striped caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">pi</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">prob</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">prior_prob</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">post_prob</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">post_prob_normalized</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">post_percentile</th>
