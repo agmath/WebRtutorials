@@ -126,7 +126,9 @@ num_pos <- my_data %>%
   filter(status == "positive") %>%
   nrow()
 
-print(paste0("Of the ", num_frogs, " frogs observed, the number positive for Chytrid fungus was", num_pos, "."))
+print(paste0("Of the ", num_frogs, 
+             " frogs observed, the number positive for Chytrid fungus was ", 
+             num_pos, "."))
 ```
 
 ## Update to Posterior
@@ -135,8 +137,9 @@ Now we'll use our data to update the prior distribution.
 
 ```{r}
 my_dists <- my_dists %>%
-  mutate(post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob) %>%
-  mutate(post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts))
+  mutate(
+    post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob,
+    post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts))
 
 my_dists %>%
   ggplot() + 
@@ -241,15 +244,19 @@ num_pos <- my_data %>%
   filter(status == "positive") %>%
   nrow()
 
-print(paste0("Of the ", num_frogs, " frogs observed, the number positive for Chytrid fungus was", num_pos, "."))
+print(paste0("Of the ", num_frogs, 
+             " frogs observed, the number positive for Chytrid fungus was ", 
+             num_pos, "."))
 ```
 
 Now run the code chunk below to use the observed data to calculate and plot the updated posterior.
 
 ```{webr-r}
 my_dists <- my_dists %>%
-  mutate(post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob) %>%
-  mutate(post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts))
+  mutate(
+    post_prob = choose(num_frogs, num_pos)*pi^num_pos*(1 - pi)^(num_frogs - num_pos)*prior_prob,
+    post_prob_normalized = post_prob/(sum(post_prob)*1/grid_pts)
+    )
 
 my_dists %>%
   ggplot() + 
